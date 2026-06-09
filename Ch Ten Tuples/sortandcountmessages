@@ -1,0 +1,57 @@
+ <!-- Write a program to read through the mbox-short.txt and figure out the 
+ distribution by hour of the day for each of the messages. You can pull the hour 
+ out from the 'From ' line by finding the time and then splitting the string a 
+ second time using a colon. From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008
+Once you have accumulated the counts for each hour, print out the counts, 
+sorted by hour as shown below. -->
+
+name = input("Enter file:")
+if len(name) < 1:
+    name = "mbox-short.txt"
+handle = open(name)
+
+hourtally = dict()
+
+for line in handle: 
+    newline = line.strip().split(" ") 
+    <!-- # a list of strings containing the info -->
+    timestamp = newline[4].split(":") 
+    <!-- # access the 4th segment of the list for time -->
+    hour = timestamp[0] 
+    <!-- # access the first segment of the time to get hour -->
+    hourtally[hour] = hourtally.get(hour,0) + 1 
+<!-- toss the hour value into the hourtally histogram to get frequency -->
+
+<!-- the hour is the key, so sort by key value and print in a list -->
+
+for key,value in sorted(hourtally.items()):
+    print(key,value)
+        
+
+        name = input("Enter file:")
+if len(name) < 1:
+    name = "mbox-short.txt"
+handle = open(name)
+
+hourtally = dict()
+
+for line in handle:
+    if line.startswith("From "):
+    
+        newline = line.strip().split(" ") 
+   
+        timestamp = newline[6].split(":") 
+        
+        hour = timestamp[0] 
+    
+        hourtally[hour] = hourtally.get(hour,0) + 1 
+
+    else: 
+        
+        continue   
+
+for key,value in sorted(hourtally.items()):
+    print(key,value)
+
+
+
